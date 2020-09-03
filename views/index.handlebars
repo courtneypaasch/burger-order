@@ -34,10 +34,10 @@
 
 <script type="text/javascript">
 $(".devour").on("click", function(event) {
+	event.preventDefault();
 	let id = $(this).attr("devourId");
-	console.log(id);
 	$.ajax("api/burgerList/" + id, {
-		type: "DELETE"
+		type: "PUT",
 	}).then(
 		function() {
 			location.reload();

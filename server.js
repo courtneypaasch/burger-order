@@ -42,12 +42,14 @@ app.post("/", (req, res) => {
   });
 });
 
-app.delete("/api/burgerList/:id", (req, res) => {
-  connection.query("DELETE FROM burgerList WHERE id = ?", [req.params.id], (err) => {
+app.put("/api/burgerList/:id", (req, res) => {
+  connection.query("UPDATE burgerList SET devoured = 1 WHERE id = ?",[req.params.id], (err, result) => {
     if (err) throw err;
-    res.status(200).end();
   });
+  res.status(200).end();
 });
+
+
 
 app.listen(PORT, () => {
   // Log (server-side) when our server has started
