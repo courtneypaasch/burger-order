@@ -19,16 +19,20 @@ let connection = mysql.createConnection({
   database: "burger_db"
 });
 
-connection.connect(function(err) {
+connection.connect((err) => {
   if (err) throw err;
   console.log("Listening on port 8080");
 });
 
-app.get("/", function(req, res) {
-    connection.query("SELECT * FROM burgerList", (err, data) => {
-        if (err) throw err;
-        res.render("index", {burgerList: data});
+app.get("/", (req, res) => {
+  connection.query("SELECT * FROM burgerList WHERE devoured=0", (err, data) => {
+    if (err) throw err;
+
+    connection.query("SELECT * FROM burgerList WHERE devoured=1", (err, data2) => {
+      if (err) throw err;
+      res.render("index", { devouredList: data2, burgerList: data });
     })
+  })
 });
 
 app.post("/", (req, res) => {
@@ -38,7 +42,7 @@ app.post("/", (req, res) => {
   });
 });
 
-app.listen(PORT, function() {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-  });
+app.listen(PORT, () => {
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
+});
