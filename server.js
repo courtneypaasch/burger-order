@@ -49,6 +49,12 @@ app.put("/api/burgerList/:id", (req, res) => {
   res.status(200).end();
 });
 
+app.delete("/api/burgerList/", (req, res) => {
+  connection.query("DELETE FROM burgerList", (err) => {
+    if (err) throw err;
+    res.status(200).end();
+  });
+});
 
 
 app.listen(PORT, () => {
