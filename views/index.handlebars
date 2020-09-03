@@ -29,10 +29,12 @@
 	<h3>Enter a type of burger that you would like to eat:</h3>
 	<textarea style="width: 30%;" type="text" name="name"></textarea>
 	<br>
-	<button type="submit">Add Burger!</button>
+	<button class="add" type="submit">Add Burger!</button> <br><br>
+	<button class="delete" type="submit">Delete the evidence!</button>
 </form>
 
 <script type="text/javascript">
+
 $(".devour").on("click", function(event) {
 	event.preventDefault();
 	let id = $(this).attr("devourId");
