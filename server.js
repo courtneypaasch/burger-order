@@ -42,6 +42,13 @@ app.post("/", (req, res) => {
   });
 });
 
+app.delete("/api/burgerList/:id", (req, res) => {
+  connection.query("DELETE FROM burgerList WHERE id = ?", [req.params.id], (err) => {
+    if (err) throw err;
+    res.status(200).end();
+  });
+});
+
 app.listen(PORT, () => {
   // Log (server-side) when our server has started
   console.log("Server listening on: http://localhost:" + PORT);
