@@ -9,13 +9,13 @@
 		<div class="col-5">
 			{{#each burgerList}}
 			<p>
-			<div class="burger">{{id}}: {{name}} <button style="float: right;" type="submit">Devour it!</button></div>
+			<div class="burger">{{id}}: {{name}} <button devourId="{{id}}" class="devour" style="float: right;" type="submit">Devour it!</button></div>
 			</p>
 			{{/each}}
 		</div>
 		<div class="col-1"></div>
 		<div class="col-4">
-			{{#each burgerList}}
+			{{#each devouredList}}
 			<p>
 			<div class="burger">{{id}}: {{name}}</div>
 			</p>
@@ -31,3 +31,18 @@
 	<br>
 	<button type="submit">Add Burger!</button>
 </form>
+
+<script type="text/javascript">
+$(".devour").on("click", function(event) {
+	let id = $(this).attr("devourId");
+	console.log(id);
+	$.ajax("api/burgerList/" + id, {
+		type: "DELETE"
+	}).then(
+		function() {
+			location.reload();
+		}
+	);
+});
+
+</script>
