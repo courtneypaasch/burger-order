@@ -1,0 +1,13 @@
+<ul>
+  {{#each burgerList}}
+  	<li>
+       <p>{{id}}: {{name}}</p>
+  	</li>
+  {{/each}}
+</ul>
+
+<form action="/" method="POST">
+	<textarea type="text" name="name"></textarea>
+
+	<button type="submit">Add Burger!</button>
+</form>
