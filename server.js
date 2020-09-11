@@ -3,7 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const mysql = require("mysql");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8100;
 
 //sets up express and handlebars
 app.use(express.json());
@@ -21,7 +21,7 @@ let connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log("Listening on port 8080");
+  console.log("Listening on port 8100");
 });
 
 app.get("/", (req, res) => {
